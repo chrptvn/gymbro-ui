@@ -11,11 +11,18 @@ import { Supplement } from '../../models/supplement';
     <div class="supplement-grid">
       @for (supplement of supplements; track supplement.id) {
         <div class="supplement-card">
-          <img [src]="supplement.imageUrl" [alt]="supplement.name">
-          <h2>{{supplement.name}}</h2>
-          <p class="category">{{supplement.category}}</p>
-          <p>{{supplement.description}}</p>
-          <button (click)="selectSupplement(supplement)">Learn More</button>
+          <div class="card-image">
+            <img [src]="supplement.imageUrl" [alt]="supplement.name">
+            <div class="category-badge">{{supplement.category}}</div>
+          </div>
+          <div class="card-content">
+            <h2>{{supplement.name}}</h2>
+            <p>{{supplement.description}}</p>
+            <button class="learn-more" (click)="selectSupplement(supplement)">
+              Learn More
+              <span class="icon">→</span>
+            </button>
+          </div>
         </div>
       }
     </div>
@@ -28,37 +35,68 @@ import { Supplement } from '../../models/supplement';
       padding: 2rem;
     }
     .supplement-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1rem;
+      border: none;
+      border-radius: 12px;
       background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .supplement-card:hover {
+      transform: translateY(-5px);
+    }
+    .card-image {
+      position: relative;
     }
     .supplement-card img {
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-radius: 4px;
+    }
+    .category-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+    .card-content {
+      padding: 1.5rem;
     }
     .supplement-card h2 {
-      margin: 1rem 0;
-      color: #333;
+      margin: 0 0 1rem;
+      color: var(--secondary);
+      font-size: 1.5rem;
+      font-weight: 700;
     }
-    .category {
-      color: #666;
-      font-size: 0.9rem;
-    }
-    button {
-      background: #2563eb;
+    .learn-more {
+      background: var(--secondary);
       color: white;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
       cursor: pointer;
       margin-top: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
     }
-    button:hover {
-      background: #1d4ed8;
+    .learn-more:hover {
+      background: var(--primary);
+      transform: translateX(5px);
+    }
+    .icon {
+      transition: transform 0.2s;
+    }
+    .learn-more:hover .icon {
+      transform: translateX(5px);
     }
   `]
 })
@@ -75,6 +113,5 @@ export class SupplementListComponent implements OnInit {
 
   selectSupplement(supplement: Supplement) {
     console.log('Selected supplement:', supplement);
-    // TODO: Implement navigation to detail view
   }
 }

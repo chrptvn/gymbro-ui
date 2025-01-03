@@ -10,8 +10,11 @@ import { SupplementListComponent } from './app/components/supplement-list/supple
   template: `
     <div class="app-container">
       <header>
-        <h1>GymBro.ca</h1>
-        <p>Your Trusted Source for Supplement Information</p>
+        <div class="header-content">
+          <h1>GymBro.ca</h1>
+          <p>Your Trusted Source for Supplement Information</p>
+        </div>
+        <div class="header-pattern"></div>
       </header>
       <app-nav-menu />
       <main>
@@ -22,21 +25,46 @@ import { SupplementListComponent } from './app/components/supplement-list/supple
   styles: [`
     .app-container {
       min-height: 100vh;
-      background: #f4f4f5;
     }
     header {
-      background: #1a1a1a;
+      background: var(--secondary);
       color: white;
-      padding: 2rem;
+      padding: 3rem 2rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    .header-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        linear-gradient(45deg, var(--primary) 25%, transparent 25%) -10px 0,
+        linear-gradient(-45deg, var(--primary) 25%, transparent 25%) -10px 0,
+        linear-gradient(45deg, transparent 75%, var(--primary) 75%) -10px 0,
+        linear-gradient(-45deg, transparent 75%, var(--primary) 75%) -10px 0;
+      background-size: 20px 20px;
+      opacity: 0.1;
     }
     h1 {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       margin: 0;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-shadow: 2px 2px 0 var(--primary);
     }
     p {
       margin: 0.5rem 0 0;
-      opacity: 0.8;
+      font-size: 1.2rem;
+      opacity: 0.9;
     }
     main {
       max-width: 1200px;
