@@ -18,7 +18,7 @@ import { Supplement } from '../../models/supplement';
           <div class="card-content">
             <h2>{{supplement.name}}</h2>
             <p>{{supplement.description}}</p>
-            <button class="learn-more" (click)="selectSupplement(supplement)">
+            <button class="learn-more">
               Learn More
               <span class="icon">→</span>
             </button>
@@ -37,7 +37,7 @@ import { Supplement } from '../../models/supplement';
     .supplement-card {
       border: none;
       border-radius: 12px;
-      background: white;
+      background: var(--white);
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       overflow: hidden;
       transition: transform 0.2s;
@@ -57,8 +57,8 @@ import { Supplement } from '../../models/supplement';
       position: absolute;
       top: 1rem;
       right: 1rem;
-      background: var(--primary);
-      color: white;
+      background: var(--accent);
+      color: var(--white);
       padding: 0.5rem 1rem;
       border-radius: 20px;
       font-weight: bold;
@@ -70,22 +70,22 @@ import { Supplement } from '../../models/supplement';
     }
     .supplement-card h2 {
       margin: 0 0 1rem;
-      color: var(--secondary);
+      color: var(--text);
       font-size: 1.5rem;
       font-weight: 700;
     }
     .learn-more {
-      background: var(--secondary);
-      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cta);
+      color: var(--white);
       border: none;
       padding: 0.75rem 1.5rem;
       border-radius: 6px;
       cursor: pointer;
       margin-top: 1rem;
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
       transition: all 0.2s;
     }
     .learn-more:hover {

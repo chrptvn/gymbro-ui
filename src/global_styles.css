@@ -6,11 +6,15 @@
 }
 
 :root {
-  --primary: #ff4d4d;
-  --secondary: #1a1a1a;
-  --accent: #ffd700;
-  --text: #333;
-  --background: #f4f4f5;
+  --primary: #5DA5A4;    /* Muted Teal */
+  --secondary: #6C7A89;  /* Slate Blue */
+  --accent: #8E9B97;     /* Soft Olive */
+  --text: #2F3E46;      /* Charcoal Black */
+  --background: #EAE7DC; /* Warm Beige */
+  --surface: #A9B0B8;   /* Cool Gray */
+  --deep: #2F3E46;      /* Charcoal Black */
+  --white: #FFFFFF;     /* Pure White */
+  --cta: #5DA5A4;      /* Muted Teal for CTAs */
 }
 
 body {
@@ -18,12 +22,6 @@ body {
   line-height: 1.6;
   color: var(--text);
   background: var(--background);
-  background-image: 
-    linear-gradient(45deg, rgba(0,0,0,0.05) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(0,0,0,0.05) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.05) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.05) 75%);
-  background-size: 20px 20px;
 }
 
 img {

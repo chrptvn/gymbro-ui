@@ -13,14 +13,13 @@ import { SupplementService } from '../../services/supplement.service';
           [class.active]="selectedCategory === category"
           (click)="selectCategory(category)">
           {{category}}
-          <span class="hover-effect"></span>
         </button>
       }
     </nav>
   `,
   styles: [`
     .nav-menu {
-      background: var(--secondary);
+      background: var(--white);
       padding: 1rem;
       display: flex;
       gap: 1rem;
@@ -30,8 +29,8 @@ import { SupplementService } from '../../services/supplement.service';
     }
     button {
       background: transparent;
-      color: white;
-      border: 2px solid var(--primary);
+      color: var(--text);
+      border: 2px solid var(--secondary);
       padding: 0.75rem 1.5rem;
       border-radius: 6px;
       cursor: pointer;
@@ -39,31 +38,17 @@ import { SupplementService } from '../../services/supplement.service';
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
-      position: relative;
-      overflow: hidden;
       transition: all 0.3s;
     }
-    .hover-effect {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--primary);
-      transform: translateX(-100%);
-      transition: transform 0.3s;
-      z-index: 0;
-    }
-    button:hover .hover-effect {
-      transform: translateX(0);
-    }
     button:hover {
-      color: white;
+      background: var(--secondary);
+      color: var(--white);
+      transform: translateY(-2px);
     }
     button.active {
       background: var(--primary);
       border-color: var(--primary);
-      color: white;
+      color: var(--white);
       transform: scale(1.05);
     }
   `]
