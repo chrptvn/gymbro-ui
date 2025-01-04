@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter, RouterModule } from '@angular/router';
 import { NavMenuComponent } from './app/components/nav-menu/nav-menu.component';
-import { SupplementListComponent } from './app/components/supplement-list/supplement-list.component';
+import { routes } from './app/app.routes';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavMenuComponent, SupplementListComponent],
+  imports: [NavMenuComponent, RouterModule],
   template: `
     <div class="app-container">
       <header>
@@ -17,7 +18,7 @@ import { SupplementListComponent } from './app/components/supplement-list/supple
       </header>
       <app-nav-menu />
       <main>
-        <app-supplement-list />
+        <router-outlet />
       </main>
     </div>
   `,
@@ -31,7 +32,6 @@ import { SupplementListComponent } from './app/components/supplement-list/supple
       padding: 3rem 2rem;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
     .header-content {
       position: relative;
@@ -61,4 +61,8 @@ import { SupplementListComponent } from './app/components/supplement-list/supple
 export class App {
 }
 
-bootstrapApplication(App);
+bootstrapApplication(App, {
+  providers: [
+    provideRouter(routes)
+  ]
+});

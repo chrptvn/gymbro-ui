@@ -57,6 +57,10 @@ export class SupplementService {
     return of(this.supplements);
   }
 
+  getSupplement(id: number): Observable<Supplement | undefined> {
+    return of(this.supplements.find(s => s.id === id));
+  }
+
   getCategories(): Observable<string[]> {
     return of(this.categories);
   }

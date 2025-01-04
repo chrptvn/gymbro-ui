@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { SupplementService } from '../../services/supplement.service';
 import { Supplement } from '../../models/supplement';
 
 @Component({
   selector: 'app-supplement-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
     <div class="supplement-grid">
       @for (supplement of supplements; track supplement.id) {
@@ -18,10 +19,10 @@ import { Supplement } from '../../models/supplement';
           <div class="card-content">
             <h2>{{supplement.name}}</h2>
             <p>{{supplement.description}}</p>
-            <button class="learn-more">
+            <a [routerLink]="['/supplement', supplement.id]" class="learn-more">
               Learn More
               <span class="icon">→</span>
-            </button>
+            </a>
           </div>
         </div>
       }
@@ -32,7 +33,6 @@ import { Supplement } from '../../models/supplement';
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
-      padding: 2rem;
     }
     .supplement-card {
       border: none;
@@ -80,12 +80,12 @@ import { Supplement } from '../../models/supplement';
       gap: 0.5rem;
       background: var(--cta);
       color: var(--white);
-      border: none;
+      text-decoration: none;
       padding: 0.75rem 1.5rem;
       border-radius: 6px;
       cursor: pointer;
-      margin-top: 1rem;
       font-weight: 600;
+      margin-top: 1rem;
       transition: all 0.2s;
     }
     .learn-more:hover {
@@ -109,9 +109,5 @@ export class SupplementListComponent implements OnInit {
     this.supplementService.getSupplements().subscribe(
       supplements => this.supplements = supplements
     );
-  }
-
-  selectSupplement(supplement: Supplement) {
-    console.log('Selected supplement:', supplement);
   }
 }
