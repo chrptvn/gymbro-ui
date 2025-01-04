@@ -14,7 +14,7 @@ import { Supplement } from '../../models/supplement';
         <div class="supplement-card">
           <div class="card-image">
             <img [src]="supplement.imageUrl" [alt]="supplement.name">
-            <div class="category-badge">{{supplement.category}}</div>
+            <div class="category-badge">{{supplement.category.name}}</div>
           </div>
           <div class="card-content">
             <h2>{{supplement.name}}</h2>

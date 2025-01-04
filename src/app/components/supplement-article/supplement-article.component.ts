@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SupplementService } from '../../services/supplement.service';
 import { Supplement } from '../../models/supplement';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-supplement-article',
@@ -13,41 +14,13 @@ import { Supplement } from '../../models/supplement';
       <article class="article-container">
         <div class="article-header">
           <img [src]="supplement.imageUrl" [alt]="supplement.name">
-          <h1>{{supplement.name}}</h1>
-          <span class="category">{{supplement.category}}</span>
+          <h1>{{ supplement.name }}</h1>
         </div>
-        
-        <div class="article-content">
-          <section>
-            <h2>Overview</h2>
-            <p>{{supplement.description}}</p>
-          </section>
 
-          <section>
-            <h2>Benefits</h2>
-            <ul>
-              @for (benefit of supplement.benefits; track benefit) {
-                <li>{{benefit}}</li>
-              }
-            </ul>
-          </section>
-
-          <section>
-            <h2>Recommended Dosage</h2>
-            <p>{{supplement.dosage}}</p>
-          </section>
-
-          <section>
-            <h2>Potential Side Effects</h2>
-            <ul>
-              @for (effect of supplement.sideEffects; track effect) {
-                <li>{{effect}}</li>
-              }
-            </ul>
-          </section>
-
-          <a routerLink="/" class="back-button">← Back to Supplements</a>
+        <div class="article-content" [innerHTML]="article">
         </div>
+
+        <a routerLink="/" class="back-button">← Back to Supplements</a>
       </article>
     }
   `,
@@ -100,28 +73,28 @@ import { Supplement } from '../../models/supplement';
       padding: 2rem;
     }
 
-    section {
+    ::ng-deep .article-content section {
       margin-bottom: 2rem;
     }
 
-    h2 {
+    ::ng-deep .article-content h2 {
       color: var(--text);
       margin-bottom: 1rem;
       font-size: 1.5rem;
     }
 
-    ul {
+    ::ng-deep .article-content ul {
       list-style-type: none;
       padding: 0;
     }
 
-    li {
+    ::ng-deep .article-content li {
       padding: 0.5rem 0;
       position: relative;
       padding-left: 1.5rem;
     }
 
-    li:before {
+    ::ng-deep .article-content li:before {
       content: "•";
       color: var(--primary);
       position: absolute;
@@ -138,8 +111,8 @@ import { Supplement } from '../../models/supplement';
       padding: 0.75rem 1.5rem;
       border-radius: 6px;
       font-weight: 600;
-      margin-top: 2rem;
       transition: all 0.2s;
+      margin: 2rem;
     }
 
     .back-button:hover {
@@ -150,17 +123,23 @@ import { Supplement } from '../../models/supplement';
 })
 export class SupplementArticleComponent implements OnInit {
   supplement?: Supplement;
+  article?: SafeHtml;
 
   constructor(
-    private route: ActivatedRoute,
-    private supplementService: SupplementService
+      private route: ActivatedRoute,
+      private supplementService: SupplementService,
+      private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = parseInt(params['id'], 10);
       this.supplementService.getSupplement(id).subscribe(
-        supplement => this.supplement = supplement
+          supplement => this.supplement = supplement
+      );
+
+      this.supplementService.getArticle(id).subscribe(
+          article => this.article = this.sanitizer.bypassSecurityTrustHtml(article)
       );
     });
   }

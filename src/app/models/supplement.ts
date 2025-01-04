@@ -1,10 +1,9 @@
+import {Category} from "./category";
+
 export interface Supplement {
   id: number;
   name: string;
-  category: string;
+  category: Category;
   description: string;
-  benefits: string[];
-  dosage: string;
-  sideEffects: string[];
   imageUrl: string;
 }

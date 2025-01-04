@@ -3,6 +3,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, RouterModule } from '@angular/router';
 import { NavMenuComponent } from './app/components/nav-menu/nav-menu.component';
 import { routes } from './app/app.routes';
+import {provideHttpClient, withFetch} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -63,6 +64,7 @@ export class App {
 
 bootstrapApplication(App, {
   providers: [
+    provideHttpClient(withFetch()),
     provideRouter(routes)
   ]
 });
