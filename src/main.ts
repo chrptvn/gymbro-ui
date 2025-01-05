@@ -2,17 +2,21 @@ import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, RouterModule } from '@angular/router';
 import { NavMenuComponent } from './app/components/nav-menu/nav-menu.component';
+import { LanguageSwitchComponent } from './app/components/language-switch/language-switch.component';
 import { routes } from './app/app.routes';
-import {provideHttpClient, withFetch} from "@angular/common/http";
+import { provideHttpClient, withFetch } from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavMenuComponent, RouterModule],
+  imports: [NavMenuComponent, RouterModule, LanguageSwitchComponent],
   template: `
     <div class="app-container">
       <header>
         <div class="header-content">
+          <div class="header-top">
+            <app-language-switch />
+          </div>
           <h1>GymBro.ca</h1>
           <p>Unlock Your Potential – Fitness and Supplements.</p>
         </div>
@@ -37,6 +41,11 @@ import {provideHttpClient, withFetch} from "@angular/common/http";
     .header-content {
       position: relative;
       z-index: 1;
+    }
+    .header-top {
+      position: absolute;
+      top: -2rem;
+      right: 0;
     }
     h1 {
       font-size: 3.5rem;
