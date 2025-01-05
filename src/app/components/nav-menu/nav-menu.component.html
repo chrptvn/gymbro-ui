@@ -3,8 +3,8 @@
         <li>
             <a routerLink="/{{lang}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         </li>
-        <li class="has-submenu">
-            <a routerLink="/{{lang}}/supplements" routerLinkActive="active">Supplements</a>
+        <li class="has-submenu" *ngFor="let type of (types$ | async)">
+            <a routerLink="/{{lang}}/supplements" routerLinkActive="active">{{ type }}</a>
             <ul class="submenu">
                 <li *ngFor="let category of categories$ | async">
                     <a

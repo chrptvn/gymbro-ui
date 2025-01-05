@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import { RouterModule} from '@angular/router';
-import {Observable, Subject, takeUntil} from "rxjs";
+import {map, Observable, Subject, takeUntil} from "rxjs";
 import {Category} from "../../models/category";
-import {SupplementService} from "../../services/supplement.service";
+import {ElementService} from "../../services/element.service";
 
 @Component({
   selector: 'app-nav-menu',
@@ -18,13 +18,19 @@ export class NavMenuComponent {
 
   lang: string = this.getLanguageFromUrl();
   categories$: Observable<Category[]>
+  types$: Observable<string[]>
 
   constructor(
-      private supplementService: SupplementService
+      private supplementService: ElementService
   ) {
-    this.categories$ = supplementService.getCategories().pipe(
+    this.categories$ = supplementService.getCategories(this.lang).pipe(
         takeUntil(this.destroy$),
     )
+
+    this.types$ = this.categories$.pipe(
+        map(categories => Array.from(new Set(categories.map(category => category.type)))),
+        takeUntil(this.destroy$)
+    );
   }
 
   private getLanguageFromUrl(): string {

@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { SupplementListComponent } from './components/supplement-list/supplement-list.component';
-import { SupplementArticleComponent } from './components/supplement-article/supplement-article.component';
+import { ElementListComponent } from './components/supplement-list/element-list.component';
+import { ArticleComponent } from './components/article/article.component';
 import { AboutComponent } from './components/about/about.component';
 import {provideHttpClient, withFetch} from "@angular/common/http";
-import {supplementResolver, supplementsResolver} from "./resolvers/supplement.resolver";
+import {supplementResolver, supplementsResolver} from "./resolvers/supplementResolver";
 import {languageResolver} from "./resolvers/language.resolver";
 
 export const routes: Routes = [
@@ -22,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: ':lang/supplements',
-    component: SupplementListComponent,
+    component: ElementListComponent,
     resolve: {
       supplements: supplementsResolver,
       lang: languageResolver,
@@ -33,9 +33,9 @@ export const routes: Routes = [
   },
   {
     path: ':lang/supplements/:category',
-    component: SupplementListComponent,
+    component: ElementListComponent,
     resolve: {
-      supplements: supplementsResolver,
+      elements: supplementsResolver,
       lang: languageResolver,
     },
     providers: [
@@ -44,9 +44,9 @@ export const routes: Routes = [
   },
   {
     path: ':lang/supplements/:category/:supplement',
-    component: SupplementArticleComponent,
+    component: ArticleComponent,
     resolve: {
-      supplement: supplementResolver,
+      element: supplementResolver,
       lang: languageResolver,
     },
     providers: [

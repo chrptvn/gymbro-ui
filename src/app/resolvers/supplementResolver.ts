@@ -1,12 +1,12 @@
 import {ActivatedRouteSnapshot, ResolveFn} from "@angular/router";
 import {inject} from "@angular/core";
-import {Supplement} from "../models/supplement";
+import {Element} from "../models/element";
 import {first, map} from "rxjs";
-import {SupplementService} from "../services/supplement.service";
+import {ElementService} from "../services/element.service";
 import {Category} from "../models/category";
 
-export const supplementResolver: ResolveFn<Supplement> = (route: ActivatedRouteSnapshot) => {
-    return inject(SupplementService).getSupplements().pipe(
+export const supplementResolver: ResolveFn<Element> = (route: ActivatedRouteSnapshot) => {
+    return inject(ElementService).getSupplements().pipe(
         map(supplements => supplements.filter(supplement =>
             formatCategoryName(supplement.category) === route.params['category'] &&
             formatSupplementName(supplement) === route.params['supplement'])
@@ -16,11 +16,11 @@ export const supplementResolver: ResolveFn<Supplement> = (route: ActivatedRouteS
     );
 }
 
-export const supplementsResolver: ResolveFn<Supplement[]> = (route: ActivatedRouteSnapshot) => {
+export const supplementsResolver: ResolveFn<Element[]> = (route: ActivatedRouteSnapshot) => {
     if (!route.params['category']) {
-        return inject(SupplementService).getSupplements();
+        return inject(ElementService).getSupplements();
     } else {
-        return inject(SupplementService).getSupplements().pipe(
+        return inject(ElementService).getSupplements().pipe(
             map(supplements => supplements.filter(supplement => formatCategoryName(supplement.category) === route.params['category']))
         );
     }
@@ -30,6 +30,6 @@ function formatCategoryName(category: Category) {
     return category.name.toLowerCase().replace(/ /g, '-')
 }
 
-function formatSupplementName(supplement: Supplement) {
+function formatSupplementName(supplement: Element) {
     return supplement.name.toLowerCase().replace(/ /g, '-')
 }

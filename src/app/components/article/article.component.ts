@@ -1,41 +1,41 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { SupplementService } from '../../services/supplement.service';
-import { Supplement } from '../../models/supplement';
+import { ElementService } from '../../services/element.service';
+import { Element } from '../../models/element';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {map, Observable, Subject, switchMap, takeUntil, tap} from "rxjs";
 
 @Component({
-  selector: 'app-supplement-article',
+  selector: 'app-article',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './supplement-article.component.html',
-  styleUrl: './supplement-article.component.scss'
+  templateUrl: './article.component.html',
+  styleUrl: './article.component.scss'
 })
-export class SupplementArticleComponent {
+export class ArticleComponent {
 
   private destroy$ = new Subject<void>();
 
-  supplement$: Observable<Supplement>;
+  supplement$: Observable<Element>;
   article$: Observable<SafeHtml>;
 
   constructor(
       private activatedRoute: ActivatedRoute,
-      private supplementService: SupplementService,
+      private elementService: ElementService,
       private sanitizer: DomSanitizer
   ) {
     this.supplement$ = this.activatedRoute.data
         .pipe(
             takeUntil(this.destroy$),
-            map(data => data['supplement'] as Supplement),
+            map(data => data['element'] as Element),
             tap(console.log)
         )
 
     this.article$ = this.supplement$
         .pipe(
             takeUntil(this.destroy$),
-            switchMap(supplement => this.supplementService.getArticle(supplement.id)),
+            switchMap(supplement => this.elementService.getArticle(supplement.id)),
             map(article => this.sanitizer.bypassSecurityTrustHtml(article)),
         )
   }

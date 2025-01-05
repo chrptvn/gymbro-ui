@@ -1,6 +1,6 @@
 import {Category} from "./category";
 
-export interface Supplement {
+export interface Element {
   id: number;
   name: string;
   category: Category;
