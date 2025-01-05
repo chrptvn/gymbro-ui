@@ -1,0 +1,16 @@
+<div class="supplement-grid" *ngIf="lang$ | async as lang">
+    <div class="supplement-card" *ngFor="let supplement of supplements$ | async">
+        <div class="card-image">
+            <img [src]="supplement.imageUrl" [alt]="supplement.name">
+            <div class="category-badge">{{ supplement.category.name }}</div>
+        </div>
+        <div class="card-content">
+            <h2>{{ supplement.name }}</h2>
+            <p>{{ supplement.description }}</p>
+            <a [routerLink]="['/', lang, 'supplements', formatCategory(supplement.category), formatSupplement(supplement)]" class="learn-more">
+                Learn More
+                <span class="icon">→</span>
+            </a>
+        </div>
+    </div>
+</div>

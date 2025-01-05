@@ -1,0 +1,11 @@
+<article class="article-container">
+    <div class="article-header">
+        <img *ngIf="supplement$ | async as supplement" [src]="supplement.imageUrl" [alt]="supplement.name">
+        <h1 *ngIf="supplement$ | async as supplement">{{ supplement.name }}</h1>
+    </div>
+
+    <div *ngIf="article$ | async as article" class="article-content" [innerHTML]="article">
+    </div>
+
+    <a routerLink="/" class="back-button">← Back to Supplements</a>
+</article>

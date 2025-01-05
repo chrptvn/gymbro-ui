@@ -1,0 +1,22 @@
+<nav class="nav-menu">
+    <ul class="main-menu">
+        <li>
+            <a routerLink="/{{lang}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        </li>
+        <li class="has-submenu">
+            <a routerLink="/{{lang}}/supplements" routerLinkActive="active">Supplements</a>
+            <ul class="submenu">
+                <li *ngFor="let category of categories$ | async">
+                    <a
+                            [routerLink]="[this.lang, 'supplements', formatCategory(category)]"
+                            routerLinkActive="active">
+                        {{ category.name}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a routerLink="/{{lang}}/about" routerLinkActive="active">About</a>
+        </li>
+    </ul>
+</nav>

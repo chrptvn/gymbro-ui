@@ -14,7 +14,7 @@ import {provideHttpClient, withFetch} from "@angular/common/http";
       <header>
         <div class="header-content">
           <h1>GymBro.ca</h1>
-          <p>Your Trusted Source for Supplement Information</p>
+          <p>Unlock Your Potential – Fitness and Supplements.</p>
         </div>
       </header>
       <app-nav-menu />
@@ -66,5 +66,5 @@ bootstrapApplication(App, {
   providers: [
     provideHttpClient(withFetch()),
     provideRouter(routes)
-  ]
+  ],
 });
