@@ -2,11 +2,11 @@ import {ActivatedRouteSnapshot, ResolveFn} from "@angular/router";
 import {inject} from "@angular/core";
 import {Element} from "../models/element";
 import {first, map} from "rxjs";
-import {ElementService} from "../services/element.service";
+import {HttpService} from "../services/http.service";
 import {Category} from "../models/category";
 
 export const supplementResolver: ResolveFn<Element> = (route: ActivatedRouteSnapshot) => {
-    return inject(ElementService).getSupplements().pipe(
+    return inject(HttpService).getSupplements().pipe(
         map(supplements => supplements.filter(supplement =>
             formatCategoryName(supplement.category) === route.params['category'] &&
             formatSupplementName(supplement) === route.params['supplement'])
@@ -18,9 +18,9 @@ export const supplementResolver: ResolveFn<Element> = (route: ActivatedRouteSnap
 
 export const supplementsResolver: ResolveFn<Element[]> = (route: ActivatedRouteSnapshot) => {
     if (!route.params['category']) {
-        return inject(ElementService).getSupplements();
+        return inject(HttpService).getSupplements();
     } else {
-        return inject(ElementService).getSupplements().pipe(
+        return inject(HttpService).getSupplements().pipe(
             map(supplements => supplements.filter(supplement => formatCategoryName(supplement.category) === route.params['category']))
         );
     }

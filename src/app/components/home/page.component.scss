@@ -1,0 +1,123 @@
+/* PAGE CONTAINER */
+::ng-deep .page-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================
+   SECTION-BLOCK BASE
+   ========================= */
+::ng-deep .section-block {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+/* Titles & Typography (Shared) */
+::ng-deep .section-block__title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+::ng-deep .section-block__description {
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+::ng-deep .section-block__subtitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+::ng-deep .section-block__text {
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+::ng-deep .section-block__list {
+  text-align: left; /* or keep center if desired */
+  margin: 0 auto 2rem;
+  max-width: 800px;
+  color: var(--text);
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+::ng-deep .section-block__list li {
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   SECTION-BLOCK MODIFIERS
+   ========================= */
+/* Example modifiers, if needed for special styling */
+::ng-deep .section-block--hero {
+  /* styling unique to hero sections */
+}
+
+::ng-deep .section-block--intro {
+  /* styling unique to intro sections */
+}
+
+::ng-deep .section-block--focus {
+  /* styling unique to focus sections */
+}
+
+/* =========================
+   FOCUS GRID & ITEMS
+   ========================= */
+::ng-deep .section-block__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+::ng-deep .section-block__item {
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .section-block__item-title {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+::ng-deep .section-block__item-text {
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+::ng-deep .section-block__item-link {
+  color: var(--cta);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+::ng-deep .section-block__item-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   CTA BUTTON
+   ========================= */
+::ng-deep .cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: var(--cta);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .cta-button:hover {
+  background: var(--primary);
+  transform: translateY(-3px);
+}

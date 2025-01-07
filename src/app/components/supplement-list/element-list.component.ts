@@ -17,7 +17,7 @@ export class ElementListComponent {
   private destroy$ = new Subject<void>();
 
   elements$: Observable<Element[]>;
-  lang$: Observable<String>;
+  lang$: Observable<string>;
 
   constructor(
       private activatedRoute: ActivatedRoute
@@ -31,7 +31,7 @@ export class ElementListComponent {
     this.lang$ = this.activatedRoute.data
         .pipe(
             takeUntil(this.destroy$),
-            map(data => data['lang'] as String),
+            map(data => data['lang'] as string),
         )
   }
 

@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter, RouterModule } from '@angular/router';
+import {provideRouter, Router, RouterModule} from '@angular/router';
 import { NavMenuComponent } from './app/components/nav-menu/nav-menu.component';
 import { LanguageSwitchComponent } from './app/components/language-switch/language-switch.component';
 import { routes } from './app/app.routes';
 import { provideHttpClient, withFetch } from "@angular/common/http";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavMenuComponent, RouterModule, LanguageSwitchComponent],
+  imports: [NavMenuComponent, RouterModule, LanguageSwitchComponent, NgIf],
   template: `
     <div class="app-container">
       <header>
@@ -18,7 +19,8 @@ import { provideHttpClient, withFetch } from "@angular/common/http";
             <app-language-switch />
           </div>
           <h1>GymBro.ca</h1>
-          <p>Unlock Your Potential – Fitness and Supplements.</p>
+          <p *ngIf="currentLanguage === 'en'">Unlock Your Potential – Fitness and Supplements.</p>
+          <p *ngIf="currentLanguage === 'fr'">Libérez Votre Potentiel – Fitness et Suppléments.</p>
         </div>
       </header>
       <app-nav-menu />
@@ -69,6 +71,12 @@ import { provideHttpClient, withFetch } from "@angular/common/http";
   `]
 })
 export class App {
+  currentLanguage: string = 'en';
+
+  constructor() {
+    const pathSegments = window.location.pathname.split('/');
+    this.currentLanguage = pathSegments[1] === 'fr' ? 'fr' : 'en';
+  }
 }
 
 bootstrapApplication(App, {

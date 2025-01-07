@@ -1,11 +1,16 @@
 <article class="article-container">
     <div class="article-header">
-        <img *ngIf="supplement$ | async as supplement" [src]="supplement.imageUrl" [alt]="supplement.name">
-        <h1 *ngIf="supplement$ | async as supplement">{{ supplement.name }}</h1>
+        <img *ngIf="elements$ | async as element" [src]="element.imageUrl" [alt]="element.name">
+        <h1 *ngIf="elements$ | async as element">{{ element.name }}</h1>
     </div>
 
-    <div *ngIf="article$ | async as article" class="article-content" [innerHTML]="article">
-    </div>
+
+    <ng-container *ngFor="let section of sections$ | async; let i = index;">
+        <div class="article-content" [innerHTML]="section">
+        </div>
+        <app-leader-board-ad *ngIf="i % 3 === 0"/>
+    </ng-container>
+
 
     <a routerLink="/" class="back-button">← Back to Supplements</a>
 </article>

@@ -1,0 +1,18 @@
+.ad-placeholder {
+  /* Container styles */
+  background-color: rgba(17, 24, 39, 0.3); /* roughly gray-900 at 30% */
+  border: 1px solid rgba(107, 114, 128, 0.2); /* roughly gray-500 at 20% */
+  border-radius: 0.5rem; /* rounded-lg */
+  padding: 1rem; /* p-4 */
+  text-align: center;
+
+  .ad-title {
+    color: rgba(255, 255, 255, 0.6); /* roughly gray-300 at 60% */
+    font-size: 0.875rem; /* text-sm */
+  }
+
+  .ad-size {
+    color: rgba(255, 255, 255, 0.4); /* roughly gray-400 at 40% */
+    font-size: 0.75rem; /* text-xs */
+  }
+}

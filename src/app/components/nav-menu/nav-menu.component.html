@@ -1,7 +1,8 @@
 <nav class="nav-menu">
     <ul class="main-menu">
         <li>
-            <a routerLink="/{{lang}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+            <a *ngIf="lang === 'en'" routerLink="/en" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+            <a *ngIf="lang === 'fr'" routerLink="/fr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a>
         </li>
         <li class="has-submenu" *ngFor="let type of (types$ | async)">
             <a routerLink="/{{lang}}/supplements" routerLinkActive="active">{{ type }}</a>
@@ -16,7 +17,8 @@
             </ul>
         </li>
         <li>
-            <a routerLink="/{{lang}}/about" routerLinkActive="active">About</a>
+            <a *ngIf="lang === 'en'" routerLink="/en/about" routerLinkActive="active">About</a>
+            <a *ngIf="lang === 'fr'" routerLink="/fr/a_propos" routerLinkActive="active">À propos</a>
         </li>
     </ul>
 </nav>

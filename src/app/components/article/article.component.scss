@@ -9,6 +9,7 @@
 
 .article-header {
   position: relative;
+  margin-bottom: 2rem;
 }
 
 .article-header img {
@@ -29,21 +30,8 @@
   font-size: 2.5rem;
 }
 
-.category {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: var(--accent);
-  color: var(--white);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-}
-
 .article-content {
-  padding: 2rem;
+  padding: 0 2rem;
 }
 
 ::ng-deep .article-content section {
@@ -62,7 +50,7 @@
 }
 
 ::ng-deep .article-content li {
-  padding: 0.5rem 0;
+  padding: .1rem 0;
   position: relative;
   padding-left: 1.5rem;
 }

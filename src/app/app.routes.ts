@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+import { PageComponent } from './components/home/page.component';
 import { ElementListComponent } from './components/supplement-list/element-list.component';
 import { ArticleComponent } from './components/article/article.component';
-import { AboutComponent } from './components/about/about.component';
 import {provideHttpClient, withFetch} from "@angular/common/http";
 import {supplementResolver, supplementsResolver} from "./resolvers/supplementResolver";
 import {languageResolver} from "./resolvers/language.resolver";
+import {aboutPageResolver, homePageResolver} from "./resolvers/pageResolver";
+import {TestArticleComponent} from "./components/supplement-article/test-article.component";
 
 export const routes: Routes = [
   {
@@ -15,16 +16,19 @@ export const routes: Routes = [
   },
   {
     path: ':lang',
-    component: HomeComponent,
+    component: PageComponent,
     resolve: {
-      lang: languageResolver,
-    }
+      page: homePageResolver,
+    },
+    providers: [
+      provideHttpClient(withFetch()),
+    ],
   },
   {
     path: ':lang/supplements',
     component: ElementListComponent,
     resolve: {
-      supplements: supplementsResolver,
+      elements: supplementsResolver,
       lang: languageResolver,
     },
     providers: [
@@ -55,9 +59,33 @@ export const routes: Routes = [
   },
   {
     path: ':lang/about',
-    component: AboutComponent,
+    component: PageComponent,
     resolve: {
+      page: aboutPageResolver,
+    },
+    providers: [
+      provideHttpClient(withFetch()),
+    ],
+  },
+  {
+    path: ':lang/a_propos',
+    component: PageComponent,
+    resolve: {
+      page: aboutPageResolver,
+    },
+    providers: [
+      provideHttpClient(withFetch()),
+    ],
+  },
+  {
+    path: ':lang/test',
+    component: TestArticleComponent,
+    resolve: {
+      elements: supplementsResolver,
       lang: languageResolver,
-    }
+    },
+    providers: [
+      provideHttpClient(withFetch()),
+    ],
   }
 ];

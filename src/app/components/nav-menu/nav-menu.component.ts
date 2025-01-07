@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import { RouterModule} from '@angular/router';
 import {map, Observable, Subject, takeUntil} from "rxjs";
 import {Category} from "../../models/category";
-import {ElementService} from "../../services/element.service";
+import {HttpService} from "../../services/http.service";
 
 @Component({
   selector: 'app-nav-menu',
@@ -21,7 +21,7 @@ export class NavMenuComponent {
   types$: Observable<string[]>
 
   constructor(
-      private supplementService: ElementService
+      private supplementService: HttpService
   ) {
     this.categories$ = supplementService.getCategories(this.lang).pipe(
         takeUntil(this.destroy$),
@@ -33,7 +33,7 @@ export class NavMenuComponent {
     );
   }
 
-  private getLanguageFromUrl(): string {
+  protected getLanguageFromUrl(): string {
     const pathSegments = window.location.pathname.split('/');
     const lang = pathSegments[1];
     return lang === 'fr' || lang === 'en' ? lang : 'en';
