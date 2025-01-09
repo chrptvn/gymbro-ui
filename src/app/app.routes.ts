@@ -6,7 +6,6 @@ import {provideHttpClient, withFetch} from "@angular/common/http";
 import {supplementResolver, supplementsResolver} from "./resolvers/supplementResolver";
 import {languageResolver} from "./resolvers/language.resolver";
 import {aboutPageResolver, homePageResolver} from "./resolvers/pageResolver";
-import {TestArticleComponent} from "./components/supplement-article/test-article.component";
 
 export const routes: Routes = [
   {
@@ -72,17 +71,6 @@ export const routes: Routes = [
     component: PageComponent,
     resolve: {
       page: aboutPageResolver,
-    },
-    providers: [
-      provideHttpClient(withFetch()),
-    ],
-  },
-  {
-    path: ':lang/test',
-    component: TestArticleComponent,
-    resolve: {
-      elements: supplementsResolver,
-      lang: languageResolver,
     },
     providers: [
       provideHttpClient(withFetch()),

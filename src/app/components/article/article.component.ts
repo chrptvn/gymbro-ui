@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { Element } from '../../models/element';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import {map, Observable, Subject, switchMap, takeUntil} from "rxjs";
+import {async, map, Observable, Subject, switchMap, takeUntil} from "rxjs";
 import {LeaderBoardAdComponent} from "../ad/leader-board-ad.component";
 
 
@@ -20,6 +20,7 @@ export class ArticleComponent implements OnDestroy {
 
   elements$: Observable<Element>;
   sections$: Observable<SafeHtml[]>;
+    lang$: Observable<string>;
 
   constructor(
       private activatedRoute: ActivatedRoute,
@@ -44,10 +45,18 @@ export class ArticleComponent implements OnDestroy {
           });
         })
     );
+
+      this.lang$ = this.activatedRoute.data
+          .pipe(
+              takeUntil(this.destroy$),
+              map(data => data['lang'] as string),
+          )
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+    protected readonly async = async;
 }

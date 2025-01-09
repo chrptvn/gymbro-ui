@@ -4,6 +4,7 @@ import {Element} from "../models/element";
 import {first, map} from "rxjs";
 import {HttpService} from "../services/http.service";
 import {Category} from "../models/category";
+import {formatWordForUrl} from "../utils/url-formater.utils";
 
 export const supplementResolver: ResolveFn<Element> = (route: ActivatedRouteSnapshot) => {
     return inject(HttpService).getSupplements().pipe(
@@ -27,9 +28,9 @@ export const supplementsResolver: ResolveFn<Element[]> = (route: ActivatedRouteS
 }
 
 function formatCategoryName(category: Category) {
-    return category.name.toLowerCase().replace(/ /g, '-')
+    return formatWordForUrl(category.name)
 }
 
 function formatSupplementName(supplement: Element) {
-    return supplement.name.toLowerCase().replace(/ /g, '-')
+    return formatWordForUrl(supplement.name)
 }

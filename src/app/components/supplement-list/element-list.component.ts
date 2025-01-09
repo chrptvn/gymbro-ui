@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ActivatedRoute, RouterModule} from '@angular/router';
 import { Element } from '../../models/element';
-import {map, Observable, Subject, takeUntil} from "rxjs";
+import {combineLatest, map, Observable, Subject, takeUntil} from "rxjs";
 import {Category} from "../../models/category";
+import {formatWordForUrl} from "../../utils/url-formater.utils";
 
 @Component({
   selector: 'app-element-list',
@@ -17,6 +18,7 @@ export class ElementListComponent {
   private destroy$ = new Subject<void>();
 
   elements$: Observable<Element[]>;
+  filteredElements$: Observable<Element[]>;
   lang$: Observable<string>;
 
   constructor(
@@ -33,13 +35,20 @@ export class ElementListComponent {
             takeUntil(this.destroy$),
             map(data => data['lang'] as string),
         )
+
+    this.filteredElements$ = combineLatest([this.elements$, this.lang$]).pipe(
+        takeUntil(this.destroy$),
+        map(([elements, lang]) => {
+          return elements.filter(element => element.category.language === lang);
+        })
+    );
   }
 
   protected formatCategory(category: Category): string {
-    return category.name.toLowerCase().replace(/ /g, '-')
+    return formatWordForUrl(category.name)
   }
 
   protected formatElement(element: Element): string {
-    return element.name.toLowerCase().replace(/ /g, '-')
+    return formatWordForUrl(element.name)
   }
 }

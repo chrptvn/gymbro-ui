@@ -4,6 +4,7 @@ import { RouterModule} from '@angular/router';
 import {map, Observable, Subject, takeUntil} from "rxjs";
 import {Category} from "../../models/category";
 import {HttpService} from "../../services/http.service";
+import {formatWordForUrl} from "../../utils/url-formater.utils";
 
 @Component({
   selector: 'app-nav-menu',
@@ -40,6 +41,6 @@ export class NavMenuComponent {
   }
 
   protected formatCategory(category: Category): string {
-    return category.name.toLowerCase().replace(/ /g, '-')
+    return formatWordForUrl(category.name)
   }
 }
