@@ -5,11 +5,11 @@
             <a *ngIf="lang === 'fr'" routerLink="/fr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a>
         </li>
         <li class="has-submenu" *ngFor="let type of (types$ | async)">
-            <a routerLink="/{{lang}}/supplements" routerLinkActive="active">{{ type }}</a>
+            <a routerLink="/{{lang}}/{{formatWordForUrl(type)}}" routerLinkActive="active">{{ type }}</a>
             <ul class="submenu">
                 <li *ngFor="let category of categories$ | async">
-                    <a
-                            [routerLink]="[this.lang, 'supplements', formatCategory(category)]"
+                    <a *ngIf="type === category.type"
+                            [routerLink]="[this.lang, formatWordForUrl(type), formatWordForUrl(category.name)]"
                             routerLinkActive="active">
                         {{ category.name}}
                     </a>

@@ -1,123 +1,167 @@
-/* PAGE CONTAINER */
-::ng-deep .page-container {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* =========================
-   SECTION-BLOCK BASE
-   ========================= */
-::ng-deep .section-block {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-/* Titles & Typography (Shared) */
-::ng-deep .section-block__title {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: var(--primary);
-}
-
-::ng-deep .section-block__description {
-  font-size: 1.2rem;
-  color: var(--text);
-  margin-bottom: 2rem;
-}
-
-::ng-deep .section-block__subtitle {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: var(--primary);
-}
-
-::ng-deep .section-block__text {
-  color: var(--text);
-  margin-bottom: 1.5rem;
-}
-
-::ng-deep .section-block__list {
-  text-align: left; /* or keep center if desired */
-  margin: 0 auto 2rem;
-  max-width: 800px;
-  color: var(--text);
-  list-style-type: disc;
-  padding-left: 1.5rem;
-}
-
-::ng-deep .section-block__list li {
-  margin-bottom: 1rem;
-}
-
-/* =========================
-   SECTION-BLOCK MODIFIERS
-   ========================= */
-/* Example modifiers, if needed for special styling */
-::ng-deep .section-block--hero {
-  /* styling unique to hero sections */
-}
-
-::ng-deep .section-block--intro {
-  /* styling unique to intro sections */
-}
-
-::ng-deep .section-block--focus {
-  /* styling unique to focus sections */
-}
-
-/* =========================
-   FOCUS GRID & ITEMS
-   ========================= */
-::ng-deep .section-block__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-::ng-deep .section-block__item {
-  padding: 2rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+/* Base container */
+::ng-deep .article-container {
+  max-width: 90%;
+  margin: 2rem auto;
+  padding: 1rem;
   background: var(--white);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-::ng-deep .section-block__item-title {
+@media (min-width: 768px) {
+  ::ng-deep .article-container {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 1024px) {
+  ::ng-deep .article-container {
+    max-width: 1200px;
+  }
+}
+
+/* Welcome message */
+::ng-deep .welcome-message {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+::ng-deep .welcome-message h1 {
+  font-size: 2.5rem;
   color: var(--primary);
   margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 
-::ng-deep .section-block__item-text {
-  color: var(--text);
+::ng-deep .welcome-message p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* Content item layout */
+::ng-deep .content-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--light-background);
+}
+
+@media (min-width: 768px) {
+  ::ng-deep .content-item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Exercises Section: Image on the right */
+::ng-deep .content-item.exercises .content-image {
+  order: 2;
+}
+
+::ng-deep .content-item.exercises .content-text {
+  order: 1;
+}
+
+/* Supplements Section: Image on the left */
+::ng-deep .content-item.supplements .content-image {
+  order: 1;
+}
+
+::ng-deep .content-item.supplements .content-text {
+  order: 2;
+}
+
+/* Text section */
+::ng-deep .content-text {
+  flex: 1;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  ::ng-deep .content-text {
+    text-align: left;
+  }
+}
+
+::ng-deep .content-text h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+::ng-deep .content-text p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
 }
 
-::ng-deep .section-block__item-link {
+::ng-deep .content-text ul {
+  list-style: none;
+  padding: 0;
+}
+
+::ng-deep .content-text li {
+  margin-bottom: 0.5rem;
+}
+
+::ng-deep .content-text a {
   color: var(--cta);
+  font-weight: bold;
   text-decoration: none;
-  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
 }
 
-::ng-deep .section-block__item-link:hover {
-  text-decoration: underline;
+::ng-deep .content-text a:hover {
+  color: var(--cta-dark);
 }
 
-/* =========================
-   CTA BUTTON
-   ========================= */
-::ng-deep .cta-button {
-  display: inline-block;
-  padding: 1rem 2rem;
+::ng-deep .content-text a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
   background: var(--cta);
-  color: var(--white);
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  bottom: -4px;
+  left: 0;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
-::ng-deep .cta-button:hover {
-  background: var(--primary);
-  transform: translateY(-3px);
+::ng-deep .content-text a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Clickable Image section */
+::ng-deep .content-image {
+  flex: 1;
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+::ng-deep .content-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .content-image:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 768px) {
+  ::ng-deep .content-image img {
+    max-width: 400px;
+  }
 }

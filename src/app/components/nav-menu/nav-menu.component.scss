@@ -19,9 +19,9 @@
 .main-menu > li > a {
   display: block;
   padding: 1rem 2rem;
-  color: var(--text);
+  color: var(--cta);
+  font-weight: bold;
   text-decoration: none;
-  font-weight: 500;
   transition: all 0.3s ease;
 }
 

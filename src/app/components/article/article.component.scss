@@ -1,10 +1,23 @@
 .article-container {
-  max-width: 800px;
+  max-width: 90%; /* Responsive for all devices */
+  width: 100%;
   margin: 2rem auto;
   background: var(--white);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 768px) {
+  .article-container {
+    max-width: 800px; /* Default for tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-container {
+    max-width: 1200px; /* Larger width for desktops */
+  }
 }
 
 .article-header {
@@ -14,8 +27,22 @@
 
 .article-header img {
   width: 100%;
-  height: 300px;
+  height: auto; /* Ensure it scales proportionally */
   object-fit: cover;
+  aspect-ratio: 16/9; /* Maintain a widescreen aspect ratio */
+  max-height: 200px; /* Set a maximum height to reduce its size */
+}
+
+@media (min-width: 768px) {
+  .article-header img {
+    max-height: 300px; /* Slightly larger for tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-header img {
+    max-height: 400px; /* Larger for desktops */
+  }
 }
 
 .article-header h1 {
@@ -27,11 +54,35 @@
   margin: 0;
   color: var(--white);
   background: linear-gradient(transparent, rgba(0,0,0,0.8));
-  font-size: 2.5rem;
+  font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+  .article-header h1 {
+    font-size: 2.5rem; /* Larger text for bigger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-header h1 {
+    font-size: 3rem; /* Even larger for desktops */
+  }
 }
 
 .article-content {
-  padding: 0 2rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .article-content {
+    padding: 0 2rem; /* Wider padding for tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-content {
+    padding: 0 4rem; /* Even wider padding for desktops */
+  }
 }
 
 ::ng-deep .article-content section {
@@ -41,7 +92,19 @@
 ::ng-deep .article-content h2 {
   color: var(--text);
   margin-bottom: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  ::ng-deep .article-content h2 {
+    font-size: 1.5rem; /* Larger headings for tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  ::ng-deep .article-content h2 {
+    font-size: 1.75rem; /* Even larger for desktops */
+  }
 }
 
 ::ng-deep .article-content ul {
@@ -79,4 +142,50 @@
 .back-button:hover {
   background: var(--primary);
   transform: translateX(-5px);
+}
+
+/* General link styling */
+::ng-deep a {
+  color: var(--primary); /* Use your custom primary color */
+  text-decoration: none; /* Remove the underline */
+  font-weight: 600; /* Make links stand out slightly */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Hover and focus effects */
+::ng-deep a:hover,
+::ng-deep a:focus {
+  color: var(--primary-dark); /* Slightly darker shade on hover */
+  text-decoration: underline; /* Add underline for emphasis */
+}
+
+/* Links inside the article content */
+::ng-deep .article-content a {
+  color: var(--cta); /* Use a distinct CTA color for article links */
+}
+
+::ng-deep .article-content a:hover {
+  color: var(--cta-dark); /* Darken the CTA color on hover */
+  text-decoration: underline; /* Emphasize interactivity */
+}
+
+/* Button-like links for CTAs */
+::ng-deep a.button-link {
+  display: inline-block;
+  background: var(--cta);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+::ng-deep a.button-link:hover {
+  background: var(--cta-dark);
+  transform: translateY(-2px); /* Adds a lift effect */
+}
+
+::ng-deep a.button-link:active {
+  transform: translateY(1px); /* Adds a pressed effect */
 }

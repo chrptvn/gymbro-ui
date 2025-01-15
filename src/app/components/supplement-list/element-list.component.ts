@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import {ActivatedRoute, RouterModule} from '@angular/router';
 import { Element } from '../../models/element';
 import {combineLatest, map, Observable, Subject, takeUntil} from "rxjs";
-import {Category} from "../../models/category";
 import {formatWordForUrl} from "../../utils/url-formater.utils";
 
 @Component({
@@ -20,6 +19,7 @@ export class ElementListComponent {
   elements$: Observable<Element[]>;
   filteredElements$: Observable<Element[]>;
   lang$: Observable<string>;
+  categoryType$: Observable<string>;
 
   constructor(
       private activatedRoute: ActivatedRoute
@@ -36,19 +36,29 @@ export class ElementListComponent {
             map(data => data['lang'] as string),
         )
 
-    this.filteredElements$ = combineLatest([this.elements$, this.lang$]).pipe(
+    this.categoryType$ = this.activatedRoute.data
+        .pipe(
+            takeUntil(this.destroy$),
+            map(data => data['categoryType'] as string),
+        )
+
+    this.filteredElements$ = combineLatest([
+        this.elements$,
+        this.lang$,
+        this.categoryType$,
+    ]).pipe(
         takeUntil(this.destroy$),
-        map(([elements, lang]) => {
-          return elements.filter(element => element.category.language === lang);
+        map(([elements, lang, categoryType]) => {
+          return elements.filter(element =>
+              element.category.language === lang &&
+              formatWordForUrl(element.category.type) === categoryType &&
+              !!element.imageUrl
+          );
         })
     );
   }
 
-  protected formatCategory(category: Category): string {
-    return formatWordForUrl(category.name)
-  }
-
-  protected formatElement(element: Element): string {
-    return formatWordForUrl(element.name)
+  protected formatWordForUrl(word: string): string {
+    return formatWordForUrl(word)
   }
 }

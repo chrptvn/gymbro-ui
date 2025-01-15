@@ -40,7 +40,7 @@ export class NavMenuComponent {
     return lang === 'fr' || lang === 'en' ? lang : 'en';
   }
 
-  protected formatCategory(category: Category): string {
-    return formatWordForUrl(category.name)
+  protected formatWordForUrl(word: string): string {
+    return formatWordForUrl(word)
   }
 }

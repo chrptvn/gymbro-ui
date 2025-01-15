@@ -1,2 +1,4 @@
-<div *ngIf="page$ | async as page" class="page-container" [innerHTML]="page">
-</div>
+<article class="article-container">
+    <div *ngIf="page$ | async as page" class="article-content" [innerHTML]="page">
+    </div>
+</article>

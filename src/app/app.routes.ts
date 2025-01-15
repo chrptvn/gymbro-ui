@@ -6,6 +6,7 @@ import {provideHttpClient, withFetch} from "@angular/common/http";
 import {supplementResolver, supplementsResolver} from "./resolvers/supplementResolver";
 import {languageResolver} from "./resolvers/language.resolver";
 import {aboutPageResolver, homePageResolver} from "./resolvers/pageResolver";
+import {categoryTypeResolver} from "./resolvers/type.resolver";
 
 export const routes: Routes = [
   {
@@ -18,39 +19,6 @@ export const routes: Routes = [
     component: PageComponent,
     resolve: {
       page: homePageResolver,
-    },
-    providers: [
-      provideHttpClient(withFetch()),
-    ],
-  },
-  {
-    path: ':lang/supplements',
-    component: ElementListComponent,
-    resolve: {
-      elements: supplementsResolver,
-      lang: languageResolver,
-    },
-    providers: [
-      provideHttpClient(withFetch()),
-    ],
-  },
-  {
-    path: ':lang/supplements/:category',
-    component: ElementListComponent,
-    resolve: {
-      elements: supplementsResolver,
-      lang: languageResolver,
-    },
-    providers: [
-      provideHttpClient(withFetch()),
-    ],
-  },
-  {
-    path: ':lang/supplements/:category/:supplement',
-    component: ArticleComponent,
-    resolve: {
-      element: supplementResolver,
-      lang: languageResolver,
     },
     providers: [
       provideHttpClient(withFetch()),
@@ -75,5 +43,41 @@ export const routes: Routes = [
     providers: [
       provideHttpClient(withFetch()),
     ],
-  }
+  },
+  {
+    path: ':lang/:categoryType',
+    component: ElementListComponent,
+    resolve: {
+      categoryType: categoryTypeResolver,
+      elements: supplementsResolver,
+      lang: languageResolver,
+    },
+    providers: [
+      provideHttpClient(withFetch()),
+    ],
+  },
+  {
+    path: ':lang/:categoryType/:category',
+    component: ElementListComponent,
+    resolve: {
+      categoryType: categoryTypeResolver,
+      elements: supplementsResolver,
+      lang: languageResolver,
+    },
+    providers: [
+      provideHttpClient(withFetch()),
+    ],
+  },
+  {
+    path: ':lang/:categoryType/:category/:supplement',
+    component: ArticleComponent,
+    resolve: {
+      categoryType: categoryTypeResolver,
+      element: supplementResolver,
+      lang: languageResolver,
+    },
+    providers: [
+      provideHttpClient(withFetch()),
+    ],
+  },
 ];

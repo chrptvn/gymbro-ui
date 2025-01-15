@@ -7,11 +7,11 @@
         <div class="card-content">
             <h2>{{ element.name }}</h2>
             <p>{{ element.description }}</p>
-            <a *ngIf="lang === 'en' " [routerLink]="['/', lang, 'supplements', formatCategory(element.category), formatElement(element)]" class="learn-more">
+            <a *ngIf="lang === 'en' " [routerLink]="['/', lang, formatWordForUrl(element.category.type), formatWordForUrl(element.category.name), formatWordForUrl(element.name)]" class="learn-more">
                 Learn More
                 <span class="icon">→</span>
             </a>
-            <a *ngIf="lang === 'fr' " [routerLink]="['/', lang, 'supplements', formatCategory(element.category), formatElement(element)]" class="learn-more">
+            <a *ngIf="lang === 'fr' " [routerLink]="['/', lang, formatWordForUrl(element.category.type), formatWordForUrl(element.category.name), formatWordForUrl(element.name)]" class="learn-more">
                 En savoir plus
                 <span class="icon">→</span>
             </a>
