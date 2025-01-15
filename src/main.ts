@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import {provideRouter, Router, RouterModule} from '@angular/router';
+import { provideRouter, RouterModule } from '@angular/router';
 import { NavMenuComponent } from './app/components/nav-menu/nav-menu.component';
 import { LanguageSwitchComponent } from './app/components/language-switch/language-switch.component';
+import { FooterComponent } from './app/components/footer/footer.component';
 import { routes } from './app/app.routes';
 import { provideHttpClient, withFetch } from "@angular/common/http";
-import {NgIf} from "@angular/common";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavMenuComponent, RouterModule, LanguageSwitchComponent, NgIf],
+  imports: [NavMenuComponent, RouterModule, LanguageSwitchComponent, FooterComponent, NgIf],
   template: `
     <div class="app-container">
       <header>
@@ -27,11 +28,14 @@ import {NgIf} from "@angular/common";
       <main>
         <router-outlet />
       </main>
+      <app-footer />
     </div>
   `,
   styles: [`
     .app-container {
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     header {
       background: var(--deep);
@@ -67,6 +71,7 @@ import {NgIf} from "@angular/common";
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem;
+      flex: 1;
     }
   `]
 })
