@@ -1,12 +1,12 @@
 {
   "/api": {
-    "target": "https://gymbro.ca",
+    "target": "https://dev.gymbro.ca",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
   "/images": {
-    "target": "https://gymbro.ca",
+    "target": "https://dev.gymbro.ca",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

@@ -9,3 +9,7 @@ export const homePageResolver: ResolveFn<string> = (route: ActivatedRouteSnapsho
 export const aboutPageResolver: ResolveFn<string> = (route: ActivatedRouteSnapshot) => {
     return inject(HttpService).getAboutPage(route.params['lang'])
 }
+
+export const privacyPolicyPageResolver: ResolveFn<string> = (route: ActivatedRouteSnapshot) => {
+    return inject(HttpService).getPrivacyPolicyPage(route.params['lang'])
+}

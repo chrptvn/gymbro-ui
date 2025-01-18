@@ -29,4 +29,8 @@ export class HttpService {
   getAboutPage(lang: string): Observable<string> {
     return this.http.get('/api/pages/about?lang=' + lang, { responseType: 'text' })
   }
+
+  getPrivacyPolicyPage(lang: string): Observable<string> {
+    return this.http.get('/api/pages/privacy-policy?lang=' + lang, { responseType: 'text' })
+  }
 }

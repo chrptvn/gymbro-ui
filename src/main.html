@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{currentLanguage}}">
+    <head>
+        <link rel="icon" href="assets/favicon.png" type="image/png">
+        <meta charset="UTF-8">
+        <title>GymBro.ca</title>
+        <base href="/">
+    </head>
+    <body>
+        <div class="app-container">
+            <header>
+                <div class="header-content">
+                    <div class="header-top">
+                        <app-language-switch />
+                    </div>
+                    <h1>GymBro.ca</h1>
+                    <p *ngIf="currentLanguage === 'en'">Unlock Your Potential – Fitness and Supplements.</p>
+                    <p *ngIf="currentLanguage === 'fr'">Libérez Votre Potentiel – Fitness et Suppléments.</p>
+                </div>
+            </header>
+            <app-nav-menu />
+            <main>
+                <router-outlet />
+            </main>
+            <app-footer />
+        </div>
+    </body>
+</html>
