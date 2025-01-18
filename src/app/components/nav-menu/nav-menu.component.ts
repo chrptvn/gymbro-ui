@@ -7,11 +7,11 @@ import {HttpService} from "../../services/http.service";
 import {formatWordForUrl} from "../../utils/url-formater.utils";
 
 @Component({
-  selector: 'app-nav-menu',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './nav-menu.component.html',
-  styleUrl: './nav-menu.component.scss'
+    selector: 'app-nav-menu',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './nav-menu.component.html',
+    standalone: true,
+    styleUrl: './nav-menu.component.scss'
 })
 export class NavMenuComponent {
 

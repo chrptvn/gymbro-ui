@@ -9,11 +9,11 @@ import { provideHttpClient, withFetch } from "@angular/common/http";
 import { NgIf } from "@angular/common";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [NavMenuComponent, RouterModule, LanguageSwitchComponent, FooterComponent, NgIf],
-  templateUrl: 'main.html',
-  styleUrl: 'main.scss',
+    selector: 'app-root',
+    imports: [NavMenuComponent, RouterModule, LanguageSwitchComponent, FooterComponent, NgIf],
+    templateUrl: 'main.html',
+    standalone: true,
+    styleUrl: 'main.scss'
 })
 export class App {
   currentLanguage: string = 'en';

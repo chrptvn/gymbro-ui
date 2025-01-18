@@ -6,11 +6,10 @@ import {combineLatest, map, Observable, Subject, takeUntil} from "rxjs";
 import {formatWordForUrl} from "../../utils/url-formater.utils";
 
 @Component({
-  selector: 'app-element-list',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './element-list.component.html',
-  styleUrl: './element-list.component.scss'
+    selector: 'app-element-list',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './element-list.component.html',
+    styleUrl: './element-list.component.scss'
 })
 export class ElementListComponent {
 

@@ -9,11 +9,10 @@ import {LeaderBoardAdComponent} from "../ad/leader-board-ad.component";
 
 
 @Component({
-  selector: 'app-article',
-  standalone: true,
+    selector: 'app-article',
     imports: [CommonModule, RouterModule, LeaderBoardAdComponent],
-  templateUrl: './article.component.html',
-  styleUrl: './article.component.scss'
+    templateUrl: './article.component.html',
+    styleUrl: './article.component.scss'
 })
 export class ArticleComponent implements OnDestroy {
   private destroy$ = new Subject<void>();
