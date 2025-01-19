@@ -85,16 +85,6 @@
   }
 }
 
-::ng-deep .article-content section {
-  margin-bottom: 2rem;
-}
-
-::ng-deep .article-content h2 {
-  color: var(--text);
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-}
-
 @media (min-width: 768px) {
   ::ng-deep .article-content h2 {
     font-size: 1.5rem; /* Larger headings for tablets */
@@ -105,6 +95,16 @@
   ::ng-deep .article-content h2 {
     font-size: 1.75rem; /* Even larger for desktops */
   }
+}
+
+::ng-deep .article-content section {
+  margin-bottom: 2rem;
+}
+
+::ng-deep .article-content h2 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
 }
 
 ::ng-deep .article-content ul {

@@ -9,6 +9,7 @@ import {formatWordForUrl} from "../../utils/url-formater.utils";
     selector: 'app-element-list',
     imports: [CommonModule, RouterModule],
     templateUrl: './element-list.component.html',
+    standalone: true,
     styleUrl: './element-list.component.scss'
 })
 export class ElementListComponent {

@@ -14,11 +14,13 @@ header {
   position: relative;
   z-index: 1;
 }
+
 .header-top {
   position: absolute;
   top: -2rem;
   right: 0;
 }
+
 h1 {
   font-size: 3.5rem;
   margin: 0;
@@ -28,13 +30,16 @@ h1 {
   color: var(--white);
   text-shadow: 2px 2px 0 var(--primary);
 }
+
 p {
   margin: 0.5rem 0 0;
   font-size: 1.2rem;
   opacity: 0.9;
 }
+
 main {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
   flex: 1;
