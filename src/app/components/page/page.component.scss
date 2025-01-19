@@ -27,13 +27,6 @@
   margin-bottom: 3rem;
 }
 
-::ng-deep .welcome-message h1 {
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-  text-transform: capitalize;
-}
-
 ::ng-deep .welcome-message p {
   font-size: 1.2rem;
   color: var(--text-secondary);

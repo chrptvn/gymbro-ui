@@ -9,11 +9,4 @@
         </div>
         <app-leader-board-ad *ngIf="i % 3 === 0"/>
     </ng-container>
-
-    <ng-container *ngIf="lang$ | async as lang">
-        <div class="article-footer">
-            <a *ngIf="lang === 'en'" routerLink="/" class="back-button">← Back to Supplements</a>
-            <a *ngIf="lang === 'fr'" routerLink="/" class="back-button">← Retour aux Suppléments</a>
-        </div>
-    </ng-container>
 </article>

@@ -12,6 +12,7 @@ import {LeaderBoardAdComponent} from "../ad/leader-board-ad.component";
     selector: 'app-article',
     imports: [CommonModule, RouterModule, LeaderBoardAdComponent],
     templateUrl: './article.component.html',
+    standalone: true,
     styleUrl: './article.component.scss'
 })
 export class ArticleComponent implements OnDestroy {
