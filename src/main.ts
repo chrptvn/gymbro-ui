@@ -2,15 +2,14 @@ import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, RouterModule } from '@angular/router';
 import { NavMenuComponent } from './app/components/nav-menu/nav-menu.component';
-import { LanguageSwitchComponent } from './app/components/language-switch/language-switch.component';
 import { FooterComponent } from './app/components/footer/footer.component';
 import { routes } from './app/app.routes';
 import { provideHttpClient, withFetch } from "@angular/common/http";
-import { NgIf } from "@angular/common";
+import {HeaderComponent} from "./app/components/header/header.component";
 
 @Component({
     selector: 'app-root',
-    imports: [NavMenuComponent, RouterModule, LanguageSwitchComponent, FooterComponent, NgIf],
+    imports: [NavMenuComponent, RouterModule, FooterComponent, HeaderComponent],
     templateUrl: 'main.html',
     standalone: true,
     styleUrl: 'main.scss'

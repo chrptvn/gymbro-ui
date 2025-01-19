@@ -1,11 +1,11 @@
 <div class="switch-container">
-    <span [class.active]="currentLanguage === 'en'">EN</span>
+    <span [class.active]="lang === 'en'">EN</span>
     <label class="switch">
         <input
                 type="checkbox"
-                [checked]="currentLanguage === 'fr'"
+                [checked]="lang === 'fr'"
                 (change)="switchLanguage()">
         <span class="slider"></span>
     </label>
-    <span [class.active]="currentLanguage === 'fr'">FR</span>
+    <span [class.active]="lang === 'fr'">FR</span>
 </div>

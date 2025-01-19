@@ -8,16 +8,7 @@
     </head>
     <body>
         <div class="app-container">
-            <header>
-                <div class="header-content">
-                    <div class="header-top">
-                        <app-language-switch />
-                    </div>
-                    <h1>GymBro.ca</h1>
-                    <p *ngIf="currentLanguage === 'en'">Unlock Your Potential – Fitness and Supplements.</p>
-                    <p *ngIf="currentLanguage === 'fr'">Libérez Votre Potentiel – Fitness et Suppléments.</p>
-                </div>
-            </header>
+            <app-header />
             <app-nav-menu />
             <main>
                 <router-outlet />

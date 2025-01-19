@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -10,16 +10,13 @@ import { CommonModule } from '@angular/common';
     styleUrl: './language-switch.component.scss'
 })
 export class LanguageSwitchComponent {
-  currentLanguage: string = 'en';
+  @Input()
+  lang: string = 'en';
 
   constructor(private router: Router) {
-    const pathSegments = window.location.pathname.split('/');
-    this.currentLanguage = pathSegments[1] === 'fr' ? 'fr' : 'en';
   }
 
   switchLanguage() {
-    const newLang = this.currentLanguage === 'en' ? 'fr' : 'en';
-
-    this.router.navigate([newLang]).then(() => {window.location.reload();});
+    this.router.navigate([this.lang === 'en' ? 'fr' : 'en']).then(() => {window.location.reload();});
   }
 }
